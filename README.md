@@ -4,7 +4,7 @@ Standalone money system
 
 
 # Credits
-- [NAT2K15](https://discord.gg/RquDVTfDwu)
+- [Join the discord @ NAT2K15 Development](https://discord.gg/RquDVTfDwu)
 - [Creator of the UI](https://forum.cfx.re/t/release-new-banking-maze-bank-reskin/135360)
 ---
 
