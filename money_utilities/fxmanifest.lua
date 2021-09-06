@@ -7,6 +7,7 @@ ui_page 'html/index.html'
 files {
     'html/index.html',
     'html/style.css',
+	'html/script.js',
 	'html/img/user.png',
 	'html/img/phone.png',
 	'html/img/clock.png',

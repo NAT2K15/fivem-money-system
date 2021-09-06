@@ -79,7 +79,7 @@ AddEventHandler('bank:transfer', function(to, amountt)
 				exports.money:updateaccount(_source, xarray)
 				exports.money:updateaccount(rip, zarray)
 				exports.money:bankNotify(_source, "You have transfered ~r~$" .. amount .. " to " .. GetPlayerName(tonumber(to)) .. " [#" .. to .. "]")
-				exports.money:bankNotify(rip, "You have received: ~g~$" .. amount .. " from ~g~" .. GetPlayerName(tonumber(_source)) .. " [#" .. to .. "]")
+				exports.money:bankNotify(rip, "You have received: ~g~$" .. amount .. " from ~g~" .. GetPlayerName(tonumber(_source)) .. " [#" .. _source .. "]")
 			end	
 		end
 	end

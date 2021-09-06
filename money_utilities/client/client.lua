@@ -16,23 +16,36 @@ if bankMenu then
     while true do
       Wait(0)
       if nearBank() then
+		if IsControlJustPressed(1, 38) then
+			inMenu = true
+			SetNuiFocus(true, true)
+			SendNUIMessage({type = 'openGeneral'})
+			TriggerServerEvent('bank:balance')
+		end
+			  
+		if IsControlJustPressed(1, 322) then
+			inMenu = false
+			SetNuiFocus(false, false)
+			SendNUIMessage({type = 'close'})
+		end
         DisplayHelpText("Press ~INPUT_PICKUP~ to access the bank ~b~")
       elseif nearATM() then
+		if IsControlJustPressed(1, 38) then
+			inMenu = true
+			SetNuiFocus(true, true)
+			SendNUIMessage({type = 'openGeneral'})
+			TriggerServerEvent('bank:balance')
+		end
+			  
+		if IsControlJustPressed(1, 322) then
+			inMenu = false
+			SetNuiFocus(false, false)
+			SendNUIMessage({type = 'close'})
+		end
         DisplayHelpText("Press ~INPUT_PICKUP~ to access the ATM ~b~")
       end
 
-      if IsControlJustPressed(1, 38) then
-        inMenu = true
-        SetNuiFocus(true, true)
-        SendNUIMessage({type = 'openGeneral'})
-        TriggerServerEvent('bank:balance')
-      end
-          
-      if IsControlJustPressed(1, 322) then
-        inMenu = false
-        SetNuiFocus(false, false)
-        SendNUIMessage({type = 'close'})
-      end
+   
     end
   end)
 end
