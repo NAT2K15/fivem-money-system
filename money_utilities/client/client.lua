@@ -40,15 +40,16 @@ end
 --==             Map Blips	                   ==
 --===============================================
 Citizen.CreateThread(function()
+	
 	if showblips then
 	  for k,v in ipairs(config.banks)do
-      local blip = AddBlipForCoord(v.x, v.y, v.z)
-      SetBlipSprite(blip, v.id)
-      SetBlipScale(blip, 1.0)
-      SetBlipAsShortRange(blip, true)
-      BeginTextCommandSetBlipName("STRING")
-      AddTextComponentString(tostring(v.name))
-      EndTextCommandSetBlipName(blip)
+		local blip = AddBlipForCoord(v.x, v.y, v.z)
+		SetBlipSprite(blip, v.id)
+		SetBlipScale(blip, 1.0)
+		SetBlipAsShortRange(blip, true)
+		BeginTextCommandSetBlipName("STRING")
+		AddTextComponentString(tostring(v.name))
+		EndTextCommandSetBlipName(blip)
 	  end
 	end
 end)
@@ -64,7 +65,7 @@ AddEventHandler('currentbalance1', function(balance)
 		type = "balanceHUD",
 		balance = balance,
 		player = playerName
-		})
+	})
 end)
 --===============================================
 --==           Deposit Event                   ==
@@ -139,3 +140,11 @@ function DisplayHelpText(str)
 	AddTextComponentString(str)
 	DisplayHelpTextFromStringLabel(0, 0, 1, -1)
 end
+
+Citizen.CreateThread(function() 
+	while true do
+		Citizen.Wait(0)
+		RemoveMultiplayerBankCash()
+		RemoveMultiplayerHudCash()
+	end
+end)
