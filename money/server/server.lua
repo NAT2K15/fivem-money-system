@@ -79,7 +79,7 @@ exports('updateaccount', function(id, array)
     if(accounts[id]) then
         accounts[id].amount = array.cash
         accounts[id].bank = array.bank
-        TriggerClientEvent('NAT2K15:UPDATEPAY', id, accounts)
+        TriggerClientEvent('NAT2K15:UPDATEPAY', id, id, accounts)
         return true
     else 
         return nil
@@ -90,13 +90,13 @@ exports('sendmoney', function(id, sendid, idarray, sendidarray)
     if(accounts[id]) then
         accounts[id].amount = idarray.cash
         accounts[id].bank = idarray.bank
-        TriggerClientEvent('NAT2K15:UPDATEPAY', id, accounts)
+        TriggerClientEvent('NAT2K15:UPDATEPAY', id, id, accounts)
     end
 
     if(accounts[sendid]) then
         accounts[sendid].amount = sendidarray.cash
         accounts[sendid].bank = sendidarray.bank
-        TriggerClientEvent('NAT2K15:UPDATEPAY', sendid, accounts)
+        TriggerClientEvent('NAT2K15:UPDATEPAY', id, id, accounts)
     end
 end)
 

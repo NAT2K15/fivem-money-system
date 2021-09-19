@@ -29,8 +29,9 @@ AddEventHandler('NAT2K15:UPDATEPAYCHECK', function(moneyarray)
 end)
 
 RegisterNetEvent('NAT2K15:UPDATEPAY')
-AddEventHandler('NAT2K15:UPDATEPAY', function(money) 
+AddEventHandler('NAT2K15:UPDATEPAY', function(id, money) 
     stuff = money
+    SendNUIMessage({action = "update_money", amount = stuff[id].amount, bank = stuff[id].bank})
 end)
 
 RegisterNetEvent('NAT2K15:BANKNOTIFY')
