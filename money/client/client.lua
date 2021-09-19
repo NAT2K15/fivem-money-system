@@ -28,6 +28,11 @@ AddEventHandler('NAT2K15:UPDATEPAYCHECK', function(moneyarray)
     end
 end)
 
+RegisterNetEvent('NAT2K15:UPDATEPAY')
+AddEventHandler('NAT2K15:UPDATEPAY', function(money) 
+    stuff = money
+end)
+
 RegisterNetEvent('NAT2K15:BANKNOTIFY')
 AddEventHandler('NAT2K15:BANKNOTIFY', function(msg) 
     BeginTextCommandThefeedPost("STRING")
