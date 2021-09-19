@@ -85,3 +85,74 @@ AddEventHandler('bank:transfer', function(to, amountt)
 	end
 end)
 
+RegisterCommand('givecash', function(source, args, message) 
+	local _source = source
+	local id = tonumber(args[1])
+	if(id == nil) then
+		TriggerClientEvent("chat:addMessage", source, {template = '<div style="padding: 0.5vw; text-align: center; margin: 0.5vw; background-color: rgba(235, 21, 46, 0.6); border-radius: 3px;"><b>{0}</b></div>', args = {"Player not found!"}})
+	else 
+		if(id == source) then
+			TriggerClientEvent("chat:addMessage", source, {template = '<div style="padding: 0.5vw; text-align: center; margin: 0.5vw; background-color: rgba(235, 21, 46, 0.6); border-radius: 3px;"><b>{0}</b></div>', args = {"You cannot send money to your self!"}})
+		else 
+			local name = GetPlayerName(id)
+			if(name == nil) then
+				TriggerClientEvent("chat:addMessage", source, {template = '<div style="padding: 0.5vw; text-align: center; margin: 0.5vw; background-color: rgba(235, 21, 46, 0.6); border-radius: 3px;"><b>{0}</b></div>', args = {"Player not found!"}})
+			else 
+				local amount = tonumber(args[2])
+				if(amount == nil) then
+					TriggerClientEvent("chat:addMessage", source, {template = '<div style="padding: 0.5vw; text-align: center; margin: 0.5vw; background-color: rgba(235, 21, 46, 0.6); border-radius: 3px;"><b>{0}</b></div>', args = {"Please provide a valid amount to send to [#" .. id .. "] " .. name}})
+				else 
+					local xPlayer = exports.money:getaccount(_source)
+					local zPlayer = exports.money:getaccount(id)
+					local check = xPlayer.amount - amount
+					if(check < 0) then 
+						TriggerClientEvent("chat:addMessage", source, {template = '<div style="padding: 0.5vw; text-align: center; margin: 0.5vw; background-color: rgba(235, 21, 46, 0.6); border-radius: 3px;"><b>{0}</b></div>', args = {"You don't have enough money to send to [#" .. id .. "] " .. name}})
+					else 
+						local xarray = {cash = check, bank = xPlayer.bank}
+						local zarray = {cash = zPlayer.amount + amount, bank = zPlayer.bank}
+						exports.money:updateaccount(_source, xarray)
+						exports.money:updateaccount(id, zarray)
+						exports.money:bankNotify(id, "You have received: ~g~$" .. amount .. " from ~g~" .. GetPlayerName(tonumber(_source)) .. " [#" .. _source .. "]")
+						TriggerClientEvent("chat:addMessage", source, {template = '<div style="padding: 0.5vw; text-align: center; margin: 0.5vw; background-color: rgb(144,238,144); border-radius: 3px;"><b>{0}</b></div>', args = {"You sent $" .. amount .. " to [#" .. id .. "] " .. name}})
+					end
+				end
+			end
+		end
+	end
+end)
+
+RegisterCommand('pay', function(source, args, message) 
+	local _source = source
+	local id = tonumber(args[1])
+	if(id == nil) then
+		TriggerClientEvent("chat:addMessage", source, {template = '<div style="padding: 0.5vw; text-align: center; margin: 0.5vw; background-color: rgba(235, 21, 46, 0.6); border-radius: 3px;"><b>{0}</b></div>', args = {"Player not found!"}})
+	else 
+		if(id == source) then
+			TriggerClientEvent("chat:addMessage", source, {template = '<div style="padding: 0.5vw; text-align: center; margin: 0.5vw; background-color: rgba(235, 21, 46, 0.6); border-radius: 3px;"><b>{0}</b></div>', args = {"You cannot send money to your self!"}})
+		else 
+			local name = GetPlayerName(id)
+			if(name == nil) then
+				TriggerClientEvent("chat:addMessage", source, {template = '<div style="padding: 0.5vw; text-align: center; margin: 0.5vw; background-color: rgba(235, 21, 46, 0.6); border-radius: 3px;"><b>{0}</b></div>', args = {"Player not found!"}})
+			else 
+				local amount = tonumber(args[2])
+				if(amount == nil) then
+					TriggerClientEvent("chat:addMessage", source, {template = '<div style="padding: 0.5vw; text-align: center; margin: 0.5vw; background-color: rgba(235, 21, 46, 0.6); border-radius: 3px;"><b>{0}</b></div>', args = {"Please provide a valid amount to send to [#" .. id .. "] " .. name}})
+				else 
+					local xPlayer = exports.money:getaccount(_source)
+					local zPlayer = exports.money:getaccount(id)
+					local check = xPlayer.bank - amount
+					if(check < 0) then 
+						TriggerClientEvent("chat:addMessage", source, {template = '<div style="padding: 0.5vw; text-align: center; margin: 0.5vw; background-color: rgba(235, 21, 46, 0.6); border-radius: 3px;"><b>{0}</b></div>', args = {"You don't have enough money to send to [#" .. id .. "] " .. name}})
+					else 
+						local xarray = {cash = xPlayer.amount, bank = check}
+						local zarray = {cash = zPlayer.amount, bank = zPlayer.bank + amount}
+						exports.money:updateaccount(_source, xarray)
+						exports.money:updateaccount(id, zarray)
+						exports.money:bankNotify(id, "You have received: ~g~$" .. amount .. " from ~g~" .. GetPlayerName(tonumber(_source)) .. " [#" .. _source .. "]")
+						TriggerClientEvent("chat:addMessage", source, {template = '<div style="padding: 0.5vw; text-align: center; margin: 0.5vw; background-color: rgb(144,238,144); border-radius: 3px;"><b>{0}</b></div>', args = {"You sent $" .. amount .. " to [#" .. id .. "] " .. name}})
+					end
+				end
+			end
+		end
+	end
+end)
