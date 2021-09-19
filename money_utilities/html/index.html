@@ -110,8 +110,9 @@
                 $('.deposit').css('display', 'none')
 
             } else if (event.data.type == "balanceHUD") {
+                let amount = Math.round(event.data.balance * 100) / 100
                 $('.username1').html(event.data.player);
-                $('.curbalance').html('<span style="color:green">' + '$' + '</span>' + event.data.balance)
+                $('.curbalance').html('<span style="color:green">' + '$' + '</span>' + amount)
 
 
             } else if (event.data.type == "closeAll") {
