@@ -35,3 +35,11 @@ AddEventHandler('NAT2K15:BANKNOTIFY', function(msg)
     EndTextCommandThefeedPostMessagetext("CHAR_BANK_FLEECA", "CHAR_BANK_FLEECA", false, 9, "Bank", "Account Notification")
     EndTextCommandThefeedPostTicker(true, false)
 end)
+
+exports('getclientaccount', function(id) 
+    if(stuff[id]) then
+        return stuff[id]
+    else    
+        return nil
+    end
+end)

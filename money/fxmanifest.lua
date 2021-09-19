@@ -34,3 +34,6 @@ server_export {
     'bankNotify',
     'sendmoney'
 }
+client_export {
+    'getclientaccount',
+}

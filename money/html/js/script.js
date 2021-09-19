@@ -5,8 +5,11 @@ $(() => {
     window.addEventListener('message', function(event) {
         if (event.data.action = "update_money") {
             cash = event.data.amount
+            cash = Math.round(cash * 100) / 100
             bank = event.data.bank
-                // console.log(bank, cash)
+            bank = Math.round(bank * 100) / 100
+
+            // console.log(bank, cash)
             updateeverything()
         }
     })
