@@ -16,9 +16,11 @@ Standalone money system
 - Bank UI
 - friendly config
 
+
 ---
 # Installation
 * Ensure you don't change the script name
 * drag and drop both resources and start it in server.cfg
 * ensure their both started after mysql-async
 * for the phone script ensure the phone is started after the money script
+test
