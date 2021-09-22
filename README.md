@@ -23,4 +23,3 @@ Standalone money system
 * drag and drop both resources and start it in server.cfg
 * ensure their both started after mysql-async
 * for the phone script ensure the phone is started after the money script
-test
