@@ -16,6 +16,7 @@ Standalone money system
 - Bank UI
 - friendly config
 
+
 ---
 # Installation
 * Ensure you don't change the script name
