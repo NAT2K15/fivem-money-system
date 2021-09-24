@@ -99,7 +99,7 @@ RegisterCommand('givecash', function(source, args, message)
 				TriggerClientEvent("chat:addMessage", source, {template = '<div style="padding: 0.5vw; text-align: center; margin: 0.5vw; background-color: rgba(235, 21, 46, 0.6); border-radius: 3px;"><b>{0}</b></div>', args = {"Player not found!"}})
 			else 
 				local amount = tonumber(args[2])
-				if(amount == nil) then
+				if(amount == nil or amount < 0) then
 					TriggerClientEvent("chat:addMessage", source, {template = '<div style="padding: 0.5vw; text-align: center; margin: 0.5vw; background-color: rgba(235, 21, 46, 0.6); border-radius: 3px;"><b>{0}</b></div>', args = {"Please provide a valid amount to send to [#" .. id .. "] " .. name}})
 				else 
 					local xPlayer = exports.money:getaccount(_source)
@@ -135,7 +135,7 @@ RegisterCommand('pay', function(source, args, message)
 				TriggerClientEvent("chat:addMessage", source, {template = '<div style="padding: 0.5vw; text-align: center; margin: 0.5vw; background-color: rgba(235, 21, 46, 0.6); border-radius: 3px;"><b>{0}</b></div>', args = {"Player not found!"}})
 			else 
 				local amount = tonumber(args[2])
-				if(amount == nil) then
+				if(amount == nil or amount < 0) then
 					TriggerClientEvent("chat:addMessage", source, {template = '<div style="padding: 0.5vw; text-align: center; margin: 0.5vw; background-color: rgba(235, 21, 46, 0.6); border-radius: 3px;"><b>{0}</b></div>', args = {"Please provide a valid amount to send to [#" .. id .. "] " .. name}})
 				else 
 					local xPlayer = exports.money:getaccount(_source)
