@@ -4,12 +4,6 @@ let stuff = []
 let start = false
 
 
-let config = {
-    x = 0.16,
-    y = 0.845
-}
-
-
 setTick(() => {
     Delay(0)
     if (start) {
@@ -60,7 +54,7 @@ function draw() {
         SetTextOutline()
         SetTextEntry("STRING")
         AddTextComponentString(`Cash: ~c~${stuff.amount.toLocaleString()} ~s~| Bank: ~c~${stuff.bank.toLocaleString()}`)
-        DrawText(config.x, config.y)
+        DrawText(0.16, 0.845)
     }
 }
 
