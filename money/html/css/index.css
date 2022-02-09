@@ -1,0 +1,26 @@
+@font-face {
+    font-family: 'Pricedown';
+    src: url('../fonts/pdown.ttf')
+}
+
+.money {
+    font-family: 'Pricedown';
+    font-size: 40px;
+    color: rgb(255, 255, 255);
+    padding: 4px;
+    text-align: right;
+    top: 80;
+    -webkit-text-stroke: 2.11px black;
+    -webkit-font-smoothing: antialiased;
+}
+
+.bank {
+    font-family: 'Pricedown';
+    font-size: 40px;
+    color: rgb(255, 255, 255);
+    padding: 4px;
+    text-align: right;
+    top: 80;
+    -webkit-text-stroke: 2.11px black;
+    -webkit-font-smoothing: antialiased;
+}
