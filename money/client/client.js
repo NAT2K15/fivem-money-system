@@ -4,12 +4,6 @@ let stuff = []
 let start = false
 
 
-let config = {
-    x = 0.16,
-    y = 0.845
-}
-
-
 setTick(() => {
     Delay(0)
     if (start) {
@@ -19,7 +13,10 @@ setTick(() => {
 
 RegisterNetEvent('NAT2K15:UPDATECLIENTMONEY')
 on('NAT2K15:UPDATECLIENTMONEY', (coolarray) => {
-    stuff = coolarray
+    let id = GetPlayerServerId(PlayerId())
+    stuff[id] = coolarray
+    let test = stuff.pop()
+    stuff = test[0]
     if (stuff) {
         start = true
     }
@@ -28,7 +25,8 @@ on('NAT2K15:UPDATECLIENTMONEY', (coolarray) => {
 
 RegisterNetEvent('NAT2K15:UPDATEPAYCHECK')
 on('NAT2K15:UPDATEPAYCHECK', (id, moneyarray) => {
-    stuff = moneyarray
+    stuff = moneyarray.pop()
+
     if (stuff) {
         BeginTextCommandThefeedPost("STRING")
         AddTextComponentSubstringPlayerName("You have received your daily pay check. Amount: $" + stuff.cycle.toLocaleString())
@@ -40,7 +38,9 @@ on('NAT2K15:UPDATEPAYCHECK', (id, moneyarray) => {
 
 RegisterNetEvent('NAT2K15:UPDATEPAY')
 on('NAT2K15:UPDATEPAY', (id, money) => {
-    stuff = money
+    stuff[id] = money
+    let test = stuff.pop()
+    stuff = test[0]
 })
 
 
@@ -54,14 +54,12 @@ on('NAT2K15:BANKNOTIFY', (msg) => {
 
 
 function draw() {
-    if (stuff) {
-        SetTextFont(4)
-        SetTextScale(0.44, 0.44)
-        SetTextOutline()
-        SetTextEntry("STRING")
-        AddTextComponentString(`Cash: ~c~${stuff.amount.toLocaleString()} ~s~| Bank: ~c~${stuff.bank.toLocaleString()}`)
-        DrawText(config.x, config.y)
-    }
+    SetTextFont(4)
+    SetTextScale(0.44, 0.44)
+    SetTextOutline()
+    SetTextEntry("STRING")
+    AddTextComponentString(`Cash: ~c~${stuff.amount.toLocaleString()} ~s~| Bank: ~c~${stuff.bank.toLocaleString()}`)
+    DrawText(0.160, 0.930)
 }
 
 function Delay(ms) { //Use this function instead of Wait()
